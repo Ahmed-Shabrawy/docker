@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  lb:
+    image: haproxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+  web01:
+#    networks:
+#      defaults:
+#        aliases:
+#          - web01
+    container_name: web01
+    image: nginx
+    ports:
+      - "8081:80"
+    volumes:
+      -  ./web01:/usr/share/nginx/html
+       
+  web02:
+    image: nginx
+    ports:
+      - "8082:80"
+    volumes:
+      -  ./web02:/usr/share/nginx/html
+       
+  web03:
+    image: nginx
+    ports:
+      - "8083:80"
+    volumes:
+      -  ./web03:/usr/share/nginx/html
+       
