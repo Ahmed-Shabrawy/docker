@@ -1,0 +1,29 @@
+version : '3'
+
+services:
+    web01:
+        container_name: web01
+        image: nginx
+        volumes:
+          - ./web01:/usr/share/nginx/html
+
+    web02:
+        container_name: web02
+        image: nginx
+        volumes:
+          - ./web02:/usr/share/nginx/html
+
+    web03:
+        container_name: web03
+        image: nginx
+        volumes:
+          - ./web03:/usr/share/nginx/html
+
+
+    elb:
+        container_name: lb
+        image: haproxy
+        ports:
+            - "8100:8100"
+        volumes:
+            - ./haproxy:/usr/local/etc/haproxy
